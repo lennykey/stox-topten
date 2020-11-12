@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {CompanyDto} from './company.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-
-  getCompanies(): Observable<any>{
-    return this.httpClient.get<any>('http://localhost:3000/companies/top-ten')
-    // return [{name: "Apple", currency: "USD", exchange: "NASDAQ"}]
+  getCompanies(): Observable<CompanyDto[]> {
+    return this.httpClient.get<CompanyDto[]>('http://localhost:3000/companies/top-ten')
   }
 }
