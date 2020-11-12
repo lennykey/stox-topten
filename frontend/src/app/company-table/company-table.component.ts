@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {CompanyService} from "./company.service";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-company-table',
@@ -6,13 +8,14 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./company-table.component.css']
 })
 export class CompanyTableComponent implements OnInit {
-  companies = [{name: "Andres", currency: "USD", exchange:"NASDAQ"}]
+  companies: Observable<any> = new Observable<any>()
   displayedColumns: string[] = ['name', 'currency', 'exchange'];
 
 
-  constructor() { }
+  constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.companies = this.companyService.getCompanies()
   }
 
 }
